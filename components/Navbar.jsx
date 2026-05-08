@@ -38,7 +38,7 @@ export default function Navbar() {
             <Link href="/Reviews" className={`font-medium text-sm whitespace-nowrap transition-colors ${pathname === "/Reviews" ? "text-black" : "text-gray-500 hover:text-black"}`}>
               Отзывы
             </Link>
-            <Link href="/delivery" className={`font-medium text-sm whitespace-nowrap transition-colors ${pathname === "/delivery" ? "text-black" : "text-gray-500 hover:text-black"}`}>
+            <Link href="/Dostavka" className={`font-medium text-sm whitespace-nowrap transition-colors ${pathname === "/delivery" ? "text-black" : "text-gray-500 hover:text-black"}`}>
               Доставка и оплата
             </Link>
             <Link href="/Contact" className={`font-medium text-sm whitespace-nowrap transition-colors ${pathname === "/Contact" ? "text-black" : "text-gray-500 hover:text-black"}`}>
