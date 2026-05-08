@@ -2,19 +2,37 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { usePathname } from "next/navigation";
+
+const catalogCategories = [
+  { label: "Все Каталог", href: "/Catalog" },
+  { label: "Кабель и провод", href: "/catalog/kabel-i-provod" },
+];
 
 export default function Navbar() {
   const pathname = usePathname();
   const [search, setSearch] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [catalogOpen, setCatalogOpen] = useState(false);
+  const catalogRef = useRef(null);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    function handleClick(e) {
+      if (catalogRef.current && !catalogRef.current.contains(e.target)) {
+        setCatalogOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
 
   return (
     <>
       <div className="w-full bg-white cursor-pointer border-b border-gray-200">
         <div className="max-w-[1400px] mx-auto px-6 h-[107px] flex items-center justify-between gap-8">
-          
+
           <Link href="/" className="shrink-0">
             <Image src="/logoblack.svg" width={120} height={50} alt="Genius Electro" priority />
           </Link>
@@ -27,18 +45,43 @@ export default function Navbar() {
             <Link href="/About" className={`font-medium text-sm whitespace-nowrap transition-colors ${pathname === "/About" ? "text-black" : "text-gray-500 hover:text-black"}`}>
               О нас
             </Link>
-            <div className="relative group">
-              <button className={`font-medium text-sm flex items-center gap-1 whitespace-nowrap transition-colors ${pathname.startsWith("/catalog") ? "text-black" : "text-gray-500 group-hover:text-black"}`}>
+
+            {/* Каталог Dropdown */}
+            <div className="relative" ref={catalogRef}>
+              <button
+                onClick={() => setCatalogOpen(!catalogOpen)}
+                className={`font-medium text-sm flex items-center gap-1 whitespace-nowrap transition-colors ${pathname.startsWith("/catalog") ? "text-black" : "text-gray-500 hover:text-black"}`}
+              >
                 Каталог
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                <svg
+                  className={`w-4 h-4 transition-transform duration-200 ${catalogOpen ? "rotate-180" : ""}`}
+                  fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
+
+              {/* Dropdown */}
+              {catalogOpen && (
+                <div className="absolute top-[calc(100%+16px)] left-0 bg-white border border-gray-100 rounded-[16px] shadow-lg z-50 p-2 min-w-[220px]">
+                  {catalogCategories.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setCatalogOpen(false)}
+                      className="block px-4 py-3 rounded-[10px] text-sm text-gray-600 hover:text-black hover:bg-gray-50 transition"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
+
             <Link href="/Reviews" className={`font-medium text-sm whitespace-nowrap transition-colors ${pathname === "/Reviews" ? "text-black" : "text-gray-500 hover:text-black"}`}>
               Отзывы
             </Link>
-            <Link href="/Dostavka" className={`font-medium text-sm whitespace-nowrap transition-colors ${pathname === "/delivery" ? "text-black" : "text-gray-500 hover:text-black"}`}>
+            <Link href="/Dostavka" className={`font-medium text-sm whitespace-nowrap transition-colors ${pathname === "/Dostavka" ? "text-black" : "text-gray-500 hover:text-black"}`}>
               Доставка и оплата
             </Link>
             <Link href="/Contact" className={`font-medium text-sm whitespace-nowrap transition-colors ${pathname === "/Contact" ? "text-black" : "text-gray-500 hover:text-black"}`}>
@@ -62,7 +105,7 @@ export default function Navbar() {
                   backgroundImage: "linear-gradient(#FDF9F2, #F5EDE2), linear-gradient(119.47deg, #D8C19A 20.35%, #C3974C 94.16%)",
                 }}
               />
-              <button className="absolute right-1 p-2 rounded-xl transition-transform active:scale-95 bg-gradient-to-b from-[#E2C299] to-[#C1925B] shadow-sm hover:opacity-90">
+              <button className="absolute right-1 p-2 rounded-xl transition-transform active:scale-95 bg-gradient-to-b from-[#E2C299] to-[#C1925B] shadow-sm hover:opacity-90 cursor-pointer">
                 <svg className="w-5 h-5 text-[#8B6F47]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
@@ -97,7 +140,7 @@ export default function Navbar() {
 
       {/* Mobile Drawer */}
       <div className={`fixed top-0 right-0 h-full w-full max-w-[360px] bg-white z-50 flex flex-col transition-transform duration-300 md:hidden ${isOpen ? "translate-x-0" : "translate-x-full"}`}>
-        
+
         {/* Header */}
         <div className="flex items-center justify-between px-5 pt-5 pb-4">
           <Link href="/" onClick={() => setIsOpen(false)}>
@@ -151,10 +194,10 @@ export default function Navbar() {
           {/* Продукция */}
           <div className="mb-6">
             <h3 className="text-base font-semibold text-[#272727] mb-3">Продукция</h3>
-            <div className="grid grid-cols-2 gap-x-4 gap-y-3">
-              {["Силовые кабели", "Кабели для энергетики", "Контрольные кабели", "Транспортные кабели", "Специализированные кабели", "Строительные кабели"].map((item) => (
-                <Link key={item} href={`/catalog/${item.toLowerCase().replace(/ /g, "-")}`} onClick={() => setIsOpen(false)} className="text-sm text-gray-500 hover:text-black transition-colors leading-snug">
-                  {item}
+            <div className="flex flex-col gap-2">
+              {catalogCategories.map((item) => (
+                <Link key={item.href} href={item.href} onClick={() => setIsOpen(false)} className="text-sm text-gray-500 hover:text-black transition-colors">
+                  {item.label}
                 </Link>
               ))}
             </div>
