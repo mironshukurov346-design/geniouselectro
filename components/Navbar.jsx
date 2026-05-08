@@ -35,13 +35,13 @@ export default function Navbar() {
                 </svg>
               </button>
             </div>
-            <Link href="/reviews" className={`font-medium text-sm whitespace-nowrap transition-colors ${pathname === "/reviews" ? "text-black" : "text-gray-500 hover:text-black"}`}>
+            <Link href="/Reviews" className={`font-medium text-sm whitespace-nowrap transition-colors ${pathname === "/Reviews" ? "text-black" : "text-gray-500 hover:text-black"}`}>
               Отзывы
             </Link>
             <Link href="/delivery" className={`font-medium text-sm whitespace-nowrap transition-colors ${pathname === "/delivery" ? "text-black" : "text-gray-500 hover:text-black"}`}>
               Доставка и оплата
             </Link>
-            <Link href="/contact" className={`font-medium text-sm whitespace-nowrap transition-colors ${pathname === "/contact" ? "text-black" : "text-gray-500 hover:text-black"}`}>
+            <Link href="/Contact" className={`font-medium text-sm whitespace-nowrap transition-colors ${pathname === "/Contact" ? "text-black" : "text-gray-500 hover:text-black"}`}>
               Контакты
             </Link>
           </nav>
@@ -165,7 +165,7 @@ export default function Navbar() {
             <div>
               <h3 className="text-base font-semibold text-[#272727] mb-3">Компания</h3>
               <div className="flex flex-col gap-2">
-                {[{ label: "О нас", href: "/about" }, { label: "Отзывы", href: "/reviews" }, { label: "Контакты", href: "/contact" }].map(({ label, href }) => (
+                {[{ label: "О нас", href: "/About" }, { label: "Отзывы", href: "/Reviews" }, { label: "Контакты", href: "/Contact" }].map(({ label, href }) => (
                   <Link key={href} href={href} onClick={() => setIsOpen(false)} className={`text-sm transition-colors ${pathname === href ? "text-black font-medium" : "text-gray-500 hover:text-black"}`}>
                     {label}
                   </Link>
