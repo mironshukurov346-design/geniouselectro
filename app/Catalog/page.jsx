@@ -1,5 +1,6 @@
 import Katalogvse from '@/components/Catalog/Katalogvse'
 import NewArrivals from '@/components/Catalog/NewArrivals'
+import CatalogePhone from '@/components/Catalog/CatalogePhone'
 import Footer from '@/components/Footer'
 import Navbar from '@/components/Navbar'
 import React from 'react'
@@ -10,6 +11,7 @@ export default function page() {
         <Navbar />
         <Katalogvse />
         <NewArrivals />
+        <CatalogePhone />
         <Footer />
     </div>
   )
