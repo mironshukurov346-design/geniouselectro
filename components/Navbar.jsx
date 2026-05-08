@@ -24,7 +24,7 @@ export default function Navbar() {
             <Link href="/" className={`font-medium text-sm whitespace-nowrap transition-colors ${pathname === "/" ? "text-black" : "text-gray-500 hover:text-black"}`}>
               Главная
             </Link>
-            <Link href="/Abouthero" className={`font-medium text-sm whitespace-nowrap transition-colors ${pathname === "/about" ? "text-black" : "text-gray-500 hover:text-black"}`}>
+            <Link href="/About" className={`font-medium text-sm whitespace-nowrap transition-colors ${pathname === "/About" ? "text-black" : "text-gray-500 hover:text-black"}`}>
               О нас
             </Link>
             <div className="relative group">

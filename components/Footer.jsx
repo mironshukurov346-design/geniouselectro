@@ -98,7 +98,7 @@ export default function Footer() {
           <div>
             <h4 className="text-base font-semibold text-[#272727] mb-5">Компания</h4>
             <div className="flex flex-col gap-4">
-              <Link href="/Abouthero" className="text-sm text-gray-500 hover:text-black transition cursor-pointer">О нас</Link>
+              <Link href="/About" className="text-sm text-gray-500 hover:text-black transition cursor-pointer">О нас</Link>
               <Link href="/reviews" className="text-sm text-gray-500 hover:text-black transition cursor-pointer">Отзывы</Link>
               <Link href="/contact" className="text-sm text-gray-500 hover:text-black transition cursor-pointer">Контакты</Link>
             </div>
