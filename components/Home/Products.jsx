@@ -45,7 +45,7 @@ export default function Products() {
   const [hoveredId, setHoveredId] = useState(null);
 
   return (
-    <section className="w-full px-6 py-16 bg-[#f7f5f2] font-['Georgia',serif]">
+    <section className="w-full px-6 py-16 bg-[#] font-['Georgia',serif]">
       <div className="max-w-[1340px] mx-auto">
 
         {/* Header row */}
