@@ -78,7 +78,7 @@ export default function Products() {
                 <h3 className="text-xl font-light text-[#272727]">{product.title}</h3>
                 <p className="text-sm leading-relaxed flex-1 text-[#272727]">{product.description}</p>
                 <div className="mt-6">
-                  <button className="w-[367px] py-4 rounded-lg text-sm font-['Georgia',serif] cursor-pointer bg-[#DDDDDD] text-[#7a7060] border-none outline-none transition-[background,color] duration-200 hover:bg-gradient-to-r hover:from-[#D8C19A] hover:to-[#C3974C] hover:text-[#2a1a08]">
+                  <button className="w-full py-4 rounded-lg text-sm font-['Georgia',serif] cursor-pointer bg-[#DDDDDD] text-[#7a7060] border-none outline-none transition-[background,color] duration-200 hover:bg-gradient-to-r hover:from-[#D8C19A] hover:to-[#C3974C] hover:text-[#2a1a08]">
                     Перейти в каталог
                   </button>
                 </div>

@@ -30,30 +30,8 @@ export default function Carousel() {
   };
 
   return (
-    <div className="relative max-w-[1300px] pt-20 mx-auto flex items-center w-full px-4 py-8 select-none">
-      {/* Left Arrow */}
-      <button
-        onClick={scrollLeft}
-        onMouseEnter={() => setLeftHovered(true)}
-        onMouseLeave={() => setLeftHovered(false)}
-        aria-label="Scroll left"
-        className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center z-10 mr-3 cursor-pointer"
-        style={{
-          backgroundColor: leftHovered ? arrowHover : arrowDefault,
-          boxShadow: leftHovered
-            ? "0 4px 16px rgba(212,168,67,0.5)"
-            : "0 2px 8px rgba(184,151,90,0.3)",
-          transform: leftHovered ? "scale(1.1)" : "scale(1)",
-          transition: "background-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease",
-        }}
-      >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-          stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <polyline points="15 18 9 12 15 6" />
-        </svg>
-      </button>
+    <div className="relative max-w-[1300px] mx-auto mt-[120px] max-md:mt-[80px] max-sm:mt-[48px] w-full px-4 sm:px-6 lg:px-10 py-8 select-none">
 
-      {/* Scrollable Track */}
       <div
         ref={trackRef}
         className="flex gap-4 overflow-x-auto"
@@ -103,27 +81,76 @@ export default function Carousel() {
         })}
       </div>
 
-      {/* Right Arrow */}
+      {/* Arrows — mobile: pastda markazda */}
+      <div className="flex items-center justify-center gap-4 mt-6 md:hidden">
+        <button
+          onClick={scrollLeft}
+          onMouseEnter={() => setLeftHovered(true)}
+          onMouseLeave={() => setLeftHovered(false)}
+          aria-label="Scroll left"
+          className="w-10 h-10 rounded-full flex items-center justify-center cursor-pointer"
+          style={{
+            backgroundColor: leftHovered ? arrowHover : arrowDefault,
+            boxShadow: leftHovered ? "0 4px 16px rgba(212,168,67,0.5)" : "0 2px 8px rgba(184,151,90,0.3)",
+            transition: "background-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease",
+          }}
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </button>
+        <button
+          onClick={scrollRight}
+          onMouseEnter={() => setRightHovered(true)}
+          onMouseLeave={() => setRightHovered(false)}
+          aria-label="Scroll right"
+          className="w-10 h-10 rounded-full flex items-center justify-center cursor-pointer"
+          style={{
+            backgroundColor: rightHovered ? arrowHover : arrowDefault,
+            boxShadow: rightHovered ? "0 4px 16px rgba(212,168,67,0.5)" : "0 2px 8px rgba(184,151,90,0.3)",
+            transition: "background-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease",
+          }}
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Arrows — desktop: chapda va o'ngda */}
+      <button
+        onClick={scrollLeft}
+        onMouseEnter={() => setLeftHovered(true)}
+        onMouseLeave={() => setLeftHovered(false)}
+        aria-label="Scroll left"
+        className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full items-center justify-center z-10 cursor-pointer"
+        style={{
+          backgroundColor: leftHovered ? arrowHover : arrowDefault,
+          boxShadow: leftHovered ? "0 4px 16px rgba(212,168,67,0.5)" : "0 2px 8px rgba(184,151,90,0.3)",
+          transition: "background-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease",
+        }}
+      >
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+      </button>
       <button
         onClick={scrollRight}
         onMouseEnter={() => setRightHovered(true)}
         onMouseLeave={() => setRightHovered(false)}
         aria-label="Scroll right"
-        className="flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center z-10 ml-3 cursor-pointer"
+        className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full items-center justify-center z-10 cursor-pointer"
         style={{
           backgroundColor: rightHovered ? arrowHover : arrowDefault,
-          boxShadow: rightHovered
-            ? "0 4px 16px rgba(212,168,67,0.5)"
-            : "0 2px 8px rgba(184,151,90,0.3)",
-          transform: rightHovered ? "scale(1.1)" : "scale(1)",
+          boxShadow: rightHovered ? "0 4px 16px rgba(212,168,67,0.5)" : "0 2px 8px rgba(184,151,90,0.3)",
           transition: "background-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease",
         }}
       >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-          stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
           <polyline points="9 18 15 12 9 6" />
         </svg>
       </button>
+
     </div>
   );
 }
